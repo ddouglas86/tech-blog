@@ -42,3 +42,54 @@ router.get('/', (req, res) => {
     })
 });
 
+router.get('/post/:id', (req, res) => {
+    Post.findOne({
+        where: {
+            id: req.params.id
+        },
+        attributes: [
+            'id',
+            'title',
+            'content',
+            'date_created',
+        ],
+        include: [
+            {
+                model: User,
+                attributes: [
+                    'username'
+                ]
+            },
+            {
+                model: Comment,
+                attributes: [
+                    'id',
+                    'content',
+                    'post_id',
+                    'user_id',
+                ],
+                include: {
+                    model: User,
+                    attributes: [
+                        'username'
+                    ]
+                }
+            }
+        ]
+    })
+})
+.then(postData => {
+    if (!postData) {
+        res.status(404).json({ message: 'Invalid ID'});
+        return;
+    } else {
+        const post = postData.get({ plain: true });
+        res.render('single-post', {
+            post
+        });
+    }
+})
+.catch(err => {
+    console.log(err);
+    res.status(500).json(err);
+});
