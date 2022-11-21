@@ -29,16 +29,16 @@ router.get('/', (req, res) => {
             }
         ]
     })
-    .then((postData) => {
-        const allPosts = postData.map(post => post.get({ plain: true }));
-        res.render('homepage', {
-            allPosts
-        });
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-    })
+        .then((postData) => {
+            const allPosts = postData.map(post => post.get({ plain: true }));
+            res.render('homepage', {
+                allPosts
+            });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        })
 });
 
 router.get('/post/:id', (req, res) => {
@@ -76,21 +76,21 @@ router.get('/post/:id', (req, res) => {
             }
         ]
     })
-.then((postData) => {
-    if (!postData) {
-        res.status(404).json({ message: 'Invalid ID'});
-        return;
-    } else {
-        const post = postData.get({ plain: true });
-        res.render('single-post', {
-            post
+        .then((postData) => {
+            if (!postData) {
+                res.status(404).json({ message: 'Invalid ID' });
+                return;
+            } else {
+                const post = postData.get({ plain: true });
+                res.render('single-post', {
+                    post
+                });
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json(err);
         });
-    }
-})
-.catch((err) => {
-    console.log(err);
-    res.status(500).json(err);
-});
 });
 
 router.get('/login', (req, res) => {

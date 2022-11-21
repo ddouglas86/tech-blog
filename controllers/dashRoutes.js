@@ -23,8 +23,8 @@ router.get('/', withAuth, (req, res) => {
             {
                 model: Comment,
                 attributes: [
-                    'id', 
-                    'content', 
+                    'id',
+                    'content',
                     'user_id'
                 ],
                 include: [
@@ -38,18 +38,18 @@ router.get('/', withAuth, (req, res) => {
             }
         ]
     })
-.then((postData) => {
-    if (!postData) {
-        res.status(404).json({ message: 'No posts'});
-        return;
-    }
-    const posts = postData.map((post) => post.get({ plain: true }));
-    res.render('dashboard', { posts, loggedIn: req.session.loggedIn});
-})
-.catch((err) => {
-    console.log(err);
-    res.status(500).json(err);
-});
+        .then((postData) => {
+            if (!postData) {
+                res.status(404).json({ message: 'No posts' });
+                return;
+            }
+            const posts = postData.map((post) => post.get({ plain: true }));
+            res.render('dashboard', { posts, loggedIn: req.session.loggedIn });
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json(err);
+        });
 });
 
 router.get('/edit/:id', withAuth, (req, res) => {
@@ -87,18 +87,18 @@ router.get('/edit/:id', withAuth, (req, res) => {
             }
         ]
     })
-    .then((postData) => {
-        if (!postData) {
-            res.status(404).json({ message: 'Invalid ID' });
-            return;
-        } else {
-            const post = postData.get({ plain: true });
-            res.render('editPost', { post, loggedIn: true });
-        }
-    })
-    .catch((err) => {
-        res.status(500).json(err);
-    });
+        .then((postData) => {
+            if (!postData) {
+                res.status(404).json({ message: 'Invalid ID' });
+                return;
+            } else {
+                const post = postData.get({ plain: true });
+                res.render('editPost', { post, loggedIn: true });
+            }
+        })
+        .catch((err) => {
+            res.status(500).json(err);
+        });
 });
 
 module.exports = router;

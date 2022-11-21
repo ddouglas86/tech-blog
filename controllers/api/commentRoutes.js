@@ -8,18 +8,18 @@ router.post('/', withAuth, (req, res) => {
         user_id: req.session.user_id,
         post_id: req.session.post_id,
     })
-    .then((newCommentData) => {
-        if (!newCommentData) {
-            res.status(404).json({ message: 'Invalid ID' });
-            return;
-        } else {
-            res.json(newCommentData)
-        }
-    })
-    .catch((err) => {
-        console.log(err);
-        res.status(404).json(err);
-    })
+        .then((newCommentData) => {
+            if (!newCommentData) {
+                res.status(404).json({ message: 'Invalid ID' });
+                return;
+            } else {
+                res.json(newCommentData)
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(404).json(err);
+        })
 });
 
 router.delete('/:id', withAuth, (req, res) => {
@@ -30,18 +30,18 @@ router.delete('/:id', withAuth, (req, res) => {
             }
         }
     )
-    .then((deleteCommentData) => {
-        if (!deleteCommentData) {
-            res.status(404).json({ message: 'Invalid ID' });
-            return;
-        } else {
-            res.json(deleteCommentData)
-        }
-    })
-    .catch((err) => {
-        console.log(err);
-        res.json(err);
-    })
+        .then((deleteCommentData) => {
+            if (!deleteCommentData) {
+                res.status(404).json({ message: 'Invalid ID' });
+                return;
+            } else {
+                res.json(deleteCommentData)
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+            res.json(err);
+        })
 });
 
 module.exports = router;

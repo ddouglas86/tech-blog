@@ -8,13 +8,13 @@ router.post('/', withAuth, (req, res) => {
         content: req.body.content,
         user_id: req.body.user_id,
     })
-    .then((newPostData) => {
-        res.json(newPostData);
-    })
-    .catch((err) => {
-        console.log(err);
-        res.status(500).json(err);
-    });
+        .then((newPostData) => {
+            res.json(newPostData);
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json(err);
+        });
 });
 
 router.put('/:id', withAuth, (req, res) => {
@@ -29,18 +29,18 @@ router.put('/:id', withAuth, (req, res) => {
             }
         }
     )
-    .then((updatePostData) => {
-        if (!updatePostData) {
-            res.status(404).json({ message: 'Invalid ID' });
-            return;
-        } else {
-            res.json(updatePostData)
-        }
-    })
-    .catch((err) => {
-        console.log(err);
-        res.json(err);
-    })
+        .then((updatePostData) => {
+            if (!updatePostData) {
+                res.status(404).json({ message: 'Invalid ID' });
+                return;
+            } else {
+                res.json(updatePostData)
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+            res.json(err);
+        })
 });
 
 router.delete('/:id', withAuth, (req, res) => {
@@ -51,18 +51,18 @@ router.delete('/:id', withAuth, (req, res) => {
             }
         }
     )
-    .then((deletePostData) => {
-        if (!deletePostData) {
-            res.status(404).json({ message: 'Invalid ID' });
-            return;
-        } else {
-            res.json(deletePostData)
-        }
-    })
-    .catch((err) => {
-        console.log(err);
-        res.json(err);
-    })
+        .then((deletePostData) => {
+            if (!deletePostData) {
+                res.status(404).json({ message: 'Invalid ID' });
+                return;
+            } else {
+                res.json(deletePostData)
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+            res.json(err);
+        })
 });
 
 module.exports = router;
