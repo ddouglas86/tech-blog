@@ -29,7 +29,7 @@ router.put('/:id', withAuth, (req, res) => {
             }
         }
     )
-    .then(updatePostData => {
+    .then((updatePostData) => {
         if (!updatePostData) {
             res.status(404).json({ message: 'Invalid ID' });
             return;
@@ -51,7 +51,7 @@ router.delete('/:id', withAuth, (req, res) => {
             }
         }
     )
-    .then(deletePostData => {
+    .then((deletePostData) => {
         if (!deletePostData) {
             res.status(404).json({ message: 'Invalid ID' });
             return;

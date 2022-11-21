@@ -7,7 +7,7 @@ router.post('/', (req, res) => {
         email: req.body.email,
         password: req.body.password
     })
-    .then(newUserData => {
+    .then((newUserData) => {
         req.session.save(() => {
             req.session.user_id = newUserData.id;
             req.session.username = newUserData.username;
@@ -15,7 +15,7 @@ router.post('/', (req, res) => {
             res.json(newUserData)
         })
     })
-    .catch(err => {
+    .catch((err) => {
         res.status(500).json(err);
     })
 });
@@ -26,7 +26,7 @@ router.post('/login', (req, res) => {
             email: req.body.email
         }
     })
-    .then(userData => {
+    .then((userData) => {
         if (!userData) {
             res.status(400).json({ message: 'Invalid email address' });
             return;

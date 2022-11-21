@@ -38,8 +38,7 @@ router.get('/', withAuth, (req, res) => {
             }
         ]
     })
-})
-.then(postData => {
+.then((postData) => {
     if (!postData) {
         res.status(404).json({ message: 'No posts'});
         return;
@@ -50,6 +49,7 @@ router.get('/', withAuth, (req, res) => {
 .catch((err) => {
     console.log(err);
     res.status(500).json(err);
+});
 });
 
 router.get('/edit/:id', withAuth, (req, res) => {
@@ -87,7 +87,7 @@ router.get('/edit/:id', withAuth, (req, res) => {
             }
         ]
     })
-    .then(postData => {
+    .then((postData) => {
         if (!postData) {
             res.status(404).json({ message: 'Invalid ID' });
             return;

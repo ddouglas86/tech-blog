@@ -8,7 +8,7 @@ router.post('/', withAuth, (req, res) => {
         user_id: req.session.user_id,
         post_id: req.session.post_id,
     })
-    .then(newCommentData => {
+    .then((newCommentData) => {
         if (!newCommentData) {
             res.status(404).json({ message: 'Invalid ID' });
             return;
@@ -30,7 +30,7 @@ router.delete('/:id', withAuth, (req, res) => {
             }
         }
     )
-    .then(deleteCommentData => {
+    .then((deleteCommentData) => {
         if (!deleteCommentData) {
             res.status(404).json({ message: 'Invalid ID' });
             return;

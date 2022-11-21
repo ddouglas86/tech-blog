@@ -29,7 +29,7 @@ router.get('/', (req, res) => {
             }
         ]
     })
-    .then(postData => {
+    .then((postData) => {
         const allPosts = postData.map(post => post.get({ plain: true }));
         res.render('homepage', {
             allPosts
@@ -76,8 +76,7 @@ router.get('/post/:id', (req, res) => {
             }
         ]
     })
-})
-.then(postData => {
+.then((postData) => {
     if (!postData) {
         res.status(404).json({ message: 'Invalid ID'});
         return;
@@ -88,9 +87,10 @@ router.get('/post/:id', (req, res) => {
         });
     }
 })
-.catch(err => {
+.catch((err) => {
     console.log(err);
     res.status(500).json(err);
+});
 });
 
 router.get('/login', (req, res) => {
