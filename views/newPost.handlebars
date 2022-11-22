@@ -1,10 +1,14 @@
 <h3>New Post</h3>
+<form id="newPost">
 <div class="mb-3">
     <label for="inputTitle" class="form-label">Title</label>
-    <input type="text" class="form-control" id="inputTitle" placeholder="Title">
+    <input type="text" class="form-control" name="postTitle" id="inputTitle" placeholder="Title">
 </div>
 <div class="mb-3">
     <label for="inputContent" class="form-label">Post</label>
-    <textarea class="form-control" id="inputContent" rows="3"></textarea>
+    <textarea class="form-control" name="postContent" id="inputContent" rows="3"></textarea>
 </div>
 <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<script src="/js/newPost.js"></script>
