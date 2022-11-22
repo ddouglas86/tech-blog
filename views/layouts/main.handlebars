@@ -22,7 +22,11 @@
         <div class="navbar-nav">
           <a class="nav-link active" aria-current="page" href="/">Home</a>
           <a class="nav-link" href="/dashboard">Dashboard</a>
-          <a class="nav-link" href="/login">Login</a>
+          {{#if logged_in}}
+          <a class="nav-link" id="logoutLink" href="/logout">Logout</a>
+          {{#else}}
+          <a class="nav-link" id="loginLink" href="/login">Login</a>
+          {{/if}}
         </div>
       </div>
     </div>
@@ -36,5 +40,7 @@
     integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
     crossorigin="anonymous"></script>
 </body>
-
+{{#if logged_in}}
+<script src="/js/logout.js"></script>
+{{/if}}
 </html>
