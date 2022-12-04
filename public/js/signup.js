@@ -1,10 +1,11 @@
-const signupFormHandler = async function(event) {
-    event.preventDefault();
-  
-    const usernameEl = document.querySelector('#inputUsername');
-    const emailEl = document.querySelector('#inputEmail')
-    const passwordEl = document.querySelector('#inputPassword');
-  
+const signupFormHandler = async (event) => {
+  event.preventDefault();
+
+  const usernameEl = document.querySelector('#inputUsername');
+  const emailEl = document.querySelector('#inputEmail')
+  const passwordEl = document.querySelector('#inputPassword');
+
+  if (usernameEl && emailEl && passwordEl) {
     const response = await fetch('/api/user', {
       method: 'POST',
       body: JSON.stringify({
@@ -14,15 +15,15 @@ const signupFormHandler = async function(event) {
       }),
       headers: { 'Content-Type': 'application/json' },
     });
-  
+
     if (response.ok) {
       document.location.replace('/dashboard');
     } else {
       alert('Error signing up');
     }
-  };
-  
-  document
-    .querySelector('#signupForm')
-    .addEventListener('submit', signupFormHandler);
-  
+  }
+};
+
+document
+  .querySelector('#signupForm')
+  .addEventListener('submit', signupFormHandler);
