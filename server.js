@@ -11,7 +11,12 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const sess = {
     secret: 'super secret secret',
-    cookie: {},
+    cookie: {
+        maxAge: 60 * 60 * 1000,
+        httpOnly: true,
+        secure: false,
+        sameSite: 'strict',
+    },
     resave: false,
     saveUninitialized: true,
     store: new SequlizeStore({
@@ -30,4 +35,4 @@ app.set('view engine', 'handlebars');
 
 sequelize.sync({ force: false }).then(() => {
     app.listen(PORT, () => console.log(`Now listening on port ${PORT}`));
-  });
+});
